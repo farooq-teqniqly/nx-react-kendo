@@ -35,6 +35,14 @@ export function App() {
     setDataState(event.dataState);
   };
 
+  const checkboxColumn = (props) => {
+    return (
+      <td>
+        <input type="checkbox" checked={props.dataItem[props.field]} />
+      </td>
+    );
+  };
+
   return (
     <div className="App">
       <h1>Hello KendoReact!</h1>
@@ -57,9 +65,13 @@ export function App() {
         onDataStateChange={dataStateChange}
       >
         <GridColumn field="ProductName" />
-        <GridColumn field="UnitPrice" />
+        <GridColumn field="UnitPrice" filter="numeric" format="{0:c}" />
         <GridColumn field="UnitsInStock" />
-        <GridColumn field="Discontinued" />
+        <GridColumn
+          field="Discontinued"
+          cell={checkboxColumn}
+          filter="boolean"
+        />
       </Grid>
     </div>
   );
