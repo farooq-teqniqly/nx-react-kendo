@@ -14,6 +14,7 @@ import {
 import products from '../data/products.json';
 import categories from '../data/categories.json';
 import { useState } from 'react';
+import { Button } from '@progress/kendo-react-buttons';
 
 export function App() {
   const onChange = (event: DropDownListChangeEvent) => {
@@ -41,6 +42,14 @@ export function App() {
         <input type="checkbox" checked={props.dataItem[props.field]} />
       </td>
     );
+  };
+
+  const [buttonTitle, setButtonTitle] = useState('Default title');
+  const [buttonClickCount, setButtonClickCount] = useState(1);
+
+  const handleClick = () => {
+    setButtonClickCount(buttonClickCount + 1);
+    setButtonTitle(`Clicked ${buttonClickCount} times!`);
   };
 
   return (
@@ -73,6 +82,7 @@ export function App() {
           filter="boolean"
         />
       </Grid>
+      <Button onClick={handleClick}>{buttonTitle}</Button>
     </div>
   );
 }
