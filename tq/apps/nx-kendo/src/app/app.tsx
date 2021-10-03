@@ -44,12 +44,20 @@ export function App() {
     );
   };
 
-  const [buttonTitle, setButtonTitle] = useState('Default title');
-  const [buttonClickCount, setButtonClickCount] = useState(1);
+  const initialState = {
+    title: 'Default title',
+    clickCount: 1,
+  };
+
+  const [state, setState] = useState(initialState);
 
   const handleClick = () => {
-    setButtonClickCount(buttonClickCount + 1);
-    setButtonTitle(`Clicked ${buttonClickCount} times!`);
+    setState({
+      clickCount: state.clickCount + 1,
+      title: `Clicked ${state.clickCount} times!`,
+    });
+
+    console.log(state);
   };
 
   return (
@@ -82,7 +90,7 @@ export function App() {
           filter="boolean"
         />
       </Grid>
-      <Button onClick={handleClick}>{buttonTitle}</Button>
+      <Button onClick={handleClick}>{state.title}</Button>
     </div>
   );
 }
